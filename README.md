@@ -14,4 +14,4 @@ Tanto para editar ou criar um novo produto o usuário poderá alterar a foto do 
 
 Para resetar os dados do firebase, acesse o icone de reticência na AppBar da tela produtos, depois click em resetar api.
 
-- [para instalar a versão android acesse ](https://flutter.dev/docs/get-started/codelab)
+- [clique aqui para acessar o apk android](https://drive.google.com/file/d/1MMglbqTnFmGLMqmtMy-G1VF8aE2ofrfY/view?usp=sharing)
