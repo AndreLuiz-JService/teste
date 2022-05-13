@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:desafio_pleno/app/modules/home/interfaces/reset_product_repository_interface.dart';
 import 'package:desafio_pleno/app/modules/home/interfaces/streamproducts_repository_interface.dart';
 import 'package:mobx/mobx.dart';
 
@@ -12,7 +13,7 @@ class HomeStore = HomeStoreBase with _$HomeStore;
 abstract class HomeStoreBase with Store {
   final IApiProducts apiProductsrepository;
   final IStreamProductRepository streamProductRepository;
-  final FirebaseFirestore firestore;
+  final IResetRepository resetRepository;
 
   @observable
   Observable<bool> loading = false.asObservable();
@@ -23,7 +24,7 @@ abstract class HomeStoreBase with Store {
   HomeStoreBase(
     IApiProducts this.apiProductsrepository,
     IStreamProductRepository this.streamProductRepository,
-    this.firestore,
+    IResetRepository this.resetRepository,
   ) {
     getList();
   }
@@ -44,11 +45,7 @@ abstract class HomeStoreBase with Store {
   @action
   resetApi() async {
     loading.value = true;
-    await firestore.collection('products').get().then((snapshot) {
-      for (DocumentSnapshot ds in snapshot.docs) {
-        ds.reference.delete();
-      }
-    });
+    resetRepository.resetProducts();
     loading.value = false;
   }
 }

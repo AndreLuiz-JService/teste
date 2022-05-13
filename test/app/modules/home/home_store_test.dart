@@ -10,14 +10,10 @@ class DioMock extends Mock implements Dio {}
 
 void main() async {
   final dio = DioMock();
-  final dioService = DioService(dio);
+  final dioService = DioService();
   final apiProductsRepository = ApiProductsRepository(dioService);
 
   test('deve retornar a lista de produtos', () async {
-    when(dio.get(any!)).thenAnswer((realInvocation) async => Response(
-        data: jsonData,
-        requestOptions: RequestOptions(
-            path: '', data: jsonData, responseType: ResponseType.json)));
     final list = await apiProductsRepository.getProductsApi();
     debugPrint(list[3].title);
     expect(list[3].title, 'Green smoothie');
